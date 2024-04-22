@@ -3,7 +3,7 @@
     <div class="flex items-center gap-4">
       <img src="/logo.png" alt="Logo" class="w-11" />
       <div>
-        <h2 class="font-bold text-xl uppercase">Vue Sneakers</h2>
+        <h2 class="font-bold text-xl uppercase">Vue-Project</h2>
         <p class="text-slate-400">Магазин лучших кроссовок</p>
       </div>
     </div>
