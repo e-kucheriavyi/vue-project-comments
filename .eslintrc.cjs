@@ -1,6 +1,4 @@
 const { rule } = require('postcss')
-
-/* eslint-env node */
 require('@rushstack/eslint-patch/modern-module-resolution')
 
 module.exports = {
