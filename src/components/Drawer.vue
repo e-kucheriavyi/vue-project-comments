@@ -47,7 +47,7 @@ import CartItem from './CartItem.vue';
           <div class="flex items-end gap-2">
             <span>Итого:</span>
             <div class="flex-1 border-b border-dashed" />
-            <span class="font-bold">1000 руб.</span>
+            <span class="font-bold">10000 руб.</span>
           </div>
 
           <div class="flex items-end gap-2">
