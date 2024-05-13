@@ -37,7 +37,7 @@ import CartItem from './CartItem.vue';
       <div class="flex flex-col gap-5">
         <CartItem
           title="Мужские Кроссовки Nike Blazer Mid Suede"
-          price="10000"
+          price="20000"
           img="/sneakers/sneakers-1.jpg"
         />
       </div>
