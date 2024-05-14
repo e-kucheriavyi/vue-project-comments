@@ -1,68 +1,67 @@
 <script setup>
-import CartItem from './CartItem.vue';
+import DrawerHead from './DrawerHead.vue'
+import CartItemList from './CartItemList.vue'
+import InfoBlock from './InfoBlock.vue'
+const emit = defineEmits(['closeDrawer', 'createOrders'])
+
+defineProps({
+  totalPrice: Number,
+  vatPrice: Number,
+  isDisabledButtonCart: Boolean,
+  openDrawer: Boolean,
+  orderId: Number
+})
 </script>
 
 <template>
-  <div class="fixed z-10 top-0 h-full w-full bg-black opacity-70" />
   <div
-    class="flex flex-col justify-between fixed h-full z-10 top-0 h-full right-0 w-96 bg-white px-10 py-7"
+    @click="emit('closeDrawer')"
+    class="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-10"
+    :class="openDrawer ? 'open-cart' : ''"
+  ></div>
+  <div
+    class="bg-white fixed w-96 h-full right-0 top-0 z-20 p-8 flex flex-col overflow-y-auto"
+    v-auto-animate="{ duration: 500 }"
   >
-    <h2 class="text-2xl font-bold mb-10 flex items-center gap-5">
-      <svg
-        class="rotate-180 hover:-translate-x-1 opacity-30 hover:opacity-100 transition cursor-pointer"
-        width="16"
-        height="14"
-        viewBox="0 0 16 14"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M1 7H14.7143"
-          stroke="black"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-        <path
-          d="M8.71436 1L14.7144 7L8.71436 13"
-          stroke="black"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </svg>
-      Корзина
-    </h2>
-    <div class="flex flex-col flex-1 justify-between">
-      <div class="flex flex-col gap-5">
-        <CartItem
-          title="Мужские Кроссовки Nike Blazer Mid Suede"
-          price="10000"
-          img="/sneakers/sneakers-1.jpg"
-        />
+    <DrawerHead />
+    <CartItemList v-if="totalPrice" key="cart-list" />
+    <div v-if="!totalPrice || orderId" class="flex my-auto">
+      <InfoBlock
+        v-if="!totalPrice && !orderId"
+        description="Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ"
+        title="Корзина пустая"
+        imageUrl="package-icon.png"
+      />
+      <InfoBlock
+        v-if="orderId"
+        :description="`Ваш заказ #${orderId} скоро будет передан курьерской доставке`"
+        title="Заказ оформлен!"
+        imageUrl="order-success-icon.png"
+        colorTitle="green"
+      />
+    </div>
+
+    <div v-if="totalPrice" class="flex flex-col gap-4 mt-8 mb-6">
+      <div class="flex gap-2 items-baseline">
+        <span>Итого</span>
+        <div class="flex-1 border-b border-dashed"></div>
+        <span class="font-bold">{{ totalPrice }} руб.</span>
       </div>
 
-      <div>
-        <div class="flex flex-col gap-5">
-          <div class="flex items-end gap-2">
-            <span>Итого:</span>
-            <div class="flex-1 border-b border-dashed" />
-            <span class="font-bold">20000 руб.</span>
-          </div>
-
-          <div class="flex items-end gap-2">
-            <span>Налог 5%:</span>
-            <div class="flex-1 border-b border-dashed" />
-            <span class="font-bold">50 руб.</span>
-          </div>
-        </div>
-
-        <button
-          class="flex justify-center items-center gap-3 w-full py-3 mt-10 bg-lime-500 text-white rounded-xl transition active:bg-lime-700 hover:bg-lime-600"
-        >Оформить заказ
-          <img src="/arrow-next.svg" alt="Arrow" />
-        </button>
+      <div class="flex gap-2 items-baseline">
+        <span>Налог 5%</span>
+        <div class="flex-1 border-b border-dashed"></div>
+        <span class="font-bold">{{ vatPrice }} руб.</span>
       </div>
     </div>
+    <button
+      v-if="totalPrice"
+      @click="emit('createOrders')"
+      class="bg-lime-500 w-full text-white p-4 rounded-xl hover:bg-lime-600 transition disabled:bg-slate-300"
+      type="button"
+      :disabled="totalPrice === 0 || isDisabledButtonCart"
+    >
+      Оформить заказ
+    </button>
   </div>
 </template>

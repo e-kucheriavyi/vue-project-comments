@@ -1,26 +1,68 @@
-<template>
-  <header class="flex justify-between border-b border-slate-200 px-10 py-8">
-    <div class="flex items-center gap-4">
-      <img src="/logo.png" alt="Logo" class="w-11" />
-      <div>
-        <h2 class="font-bold text-xl uppercase">Vue-Project</h2>
-        <p class="text-slate-400">Магазин лучших кроссовок</p>
-      </div>
-    </div>
+<script setup>
+import { useRoute } from 'vue-router'
+defineProps({
+  total: Number
+})
 
-    <ul class="flex items-center gap-10">
-      <li class="flex items-center gap-3 cursor-pointer">
-        <img src="/cart.svg" alt="Cart" />
-        <b>1205 руб.</b>
-      </li>
-      <li class="flex items-center gap-3 cursor-pointer">
-        <img src="/heart.svg" alt="Favorite" />
-        <span>Закладки</span>
-      </li>
-      <li class="flex items-center gap-3 cursor-pointer">
-        <img src="/profile.svg" alt="Favorite" />
-        <span>Профиль</span>
-      </li>
-    </ul>
+const emit = defineEmits(['openDrawer'])
+
+const route = useRoute()
+</script>
+
+<template>
+  <header
+    class="flex justify-between items-center flex-wrap gap-4 border-b border-slate-300 px-10 py-8"
+  >
+    <router-link :to="{ name: 'home' }"
+      ><div class="flex items-center">
+        <img src="/logo.png" alt="Logo" class="w-10 mr-4" />
+        <div>
+          <span class="text-xl font-bold uppercase">Vue Sneakers</span>
+          <h1 class="text-slate-500">Магазин лучших кроссовок</h1>
+        </div>
+      </div>
+    </router-link>
+
+    <nav>
+      <ul class="flex items-center gap-4 flex-wrap sm:gap-10">
+        <li
+          v-if="route.path !== '/'"
+          class="flex items-center cursor-pointer gap-3 text-slate-600 hover:text-black"
+        >
+          <router-link
+            :to="{ name: 'home' }"
+            class="bg-[url(/sneakers.svg)] bg-no-repeat pl-8 bg-left bg-contain"
+            active-class="text-black"
+            >Каталог</router-link
+          >
+        </li>
+        <li class="cursor-pointer text-slate-600 hover:text-black">
+          <button
+            aria-label="Корзина"
+            @click="emit('openDrawer')"
+            class="font-bold bg-[url(/cart.svg)] bg-no-repeat pl-8 bg-left"
+            type="button"
+          >
+            {{ total }} руб.
+          </button>
+        </li>
+        <li class="flex items-center cursor-pointer gap-3 text-slate-600 hover:text-black">
+          <router-link
+            :to="{ name: 'favorites' }"
+            class="bg-[url(/heart.svg)] bg-no-repeat pl-8 bg-left"
+            active-class="text-black"
+            >Закладки</router-link
+          >
+        </li>
+        <li class="flex items-center cursor-pointer gap-3 text-slate-600 hover:text-black">
+          <router-link
+            :to="{ name: 'profile' }"
+            class="bg-[url(/profile.svg)] bg-no-repeat pl-8 bg-left"
+            active-class="text-black"
+            >Профиль</router-link
+          >
+        </li>
+      </ul>
+    </nav>
   </header>
 </template>

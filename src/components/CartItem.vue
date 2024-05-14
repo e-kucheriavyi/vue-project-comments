@@ -1,24 +1,28 @@
 <script setup>
 defineProps({
-  img: String,
+  id: Number,
   title: String,
   price: Number,
-  onClickDelete: Function,
-});
+  imageUrl: String,
+  removeFromCart: Function
+})
 </script>
 
 <template>
-  <div class="relative flex w-full border border-slate-100 rounded-xl p-4 gap-4">
-    <img :src="img" class="w-16 h-16" alt="Sneaker" />
-    <div class="flex flex-col w-full">
-      <p>{{ title }}</p>
-      <div class="flex justify-between mt-5">
+  <div class="flex justify-between gap-10 items-center border border-slate-100 p-4 rounded-xl">
+    <img class="w-16 h-16" :src="imageUrl" :alt="title" />
+    <div class="flex flex-col">
+      <p class="mb-2">{{ title }}</p>
+
+      <div class="flex justify-between">
         <span class="font-bold">{{ price }} руб.</span>
-        <img
-          class="cursor-pointer opacity-30 hover:opacity-100 transition"
-          src="/close.svg"
-          alt="Close"
-        />
+        <button
+          @click="removeFromCart"
+          type="button"
+          aria-label="Удалить из корзины"
+          class="w-8 h-8 bg-cover bg-no-repeat bg-[url(/close.svg)] opacity-60 hover:opacity-100 transition-opacity"
+          title="Удалить из корзины"
+        ></button>
       </div>
     </div>
   </div>

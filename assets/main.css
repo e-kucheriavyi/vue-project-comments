@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: rgb(247 254 231);
+}
+
+body:has(.open-cart) {
+  height: 100vh;
+  overflow-y: hidden;
+  padding-right: 15px;
+}
