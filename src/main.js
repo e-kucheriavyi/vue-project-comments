@@ -1,7 +1,7 @@
 import './assets/main.css'
 import router from './router.js'
-import { createApp } from './node_modules/@vue'
-import { autoAnimatePlugin } from './node_modules/@formkit/auto-animate/vue'
+import { createApp } from 'vue'
+import { autoAnimatePlugin } from '@formkit/auto-animate/vue'
 import App from './App.vue'
 
 const app = createApp(App)
