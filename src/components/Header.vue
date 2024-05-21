@@ -17,8 +17,8 @@ const route = useRoute()
       ><div class="flex items-center">
         <img src="/logo.png" alt="Logo" class="w-10 mr-4" />
         <div>
-          <span class="text-xl font-bold uppercase">Vue Sneakers</span>
-          <h1 class="text-slate-500">Магазин лучших кроссовок</h1>
+          <span class="text-xl font-bold uppercase">Vue-project</span>
+          <h1 class="text-slate-500">Магазин</h1>
         </div>
       </div>
     </router-link>
