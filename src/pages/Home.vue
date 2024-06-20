@@ -2,6 +2,7 @@
 import { reactive, inject, watch, onMounted } from 'vue'
 import axios from 'axios'
 import debounce from 'lodash.debounce'
+// Лучше настроить абсолютные импорты
 import CardList from '../components/CardList.vue'
 import Sorted from '../components/Sorted.vue'
 

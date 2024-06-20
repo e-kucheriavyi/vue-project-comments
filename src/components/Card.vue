@@ -5,6 +5,7 @@ defineProps({
   price: Number,
   isFavorite: Boolean,
   isAdded: Boolean,
+  // Во Vue принято эмитить события, а не передавать коллбэки
   onClickAdd: Function,
   onClickFavorite: Function
 })

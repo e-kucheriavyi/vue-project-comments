@@ -28,7 +28,7 @@ watch(cart, () => {
     <h1 class="text-3xl font-bold w-full">Мои заказы</h1>
     <p class="text-slate-600">Всего заказов: {{ orders.length }}</p>
   </div>
-  <div class="">
+  <div class=""><!--Ещё мусор. Класс не нужно указывать, если он пустой-->
     <ul>
       <li
         v-for="order in orders"

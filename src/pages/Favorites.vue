@@ -35,6 +35,7 @@ provide(favorites, 'favorites')
 
 <template>
   <div class="flex justify-between items-center flex-wrap gap-5">
+    <!-- Закладки — это bookmarks. Тут у вас скорее Избранное -->
     <h2 class="text-3xl font-bold w-full">Мои закладки</h2>
   </div>
 
